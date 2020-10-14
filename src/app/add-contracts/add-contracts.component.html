@@ -1,0 +1,63 @@
+<div class="container-fluid">
+    <h2>Contract Add Form</h2>
+    <form  [formGroup]="addmore">
+        <hr/>
+      <div class="form-group">
+        <label >Hotel</label>
+        <input formControlName="Hotel" type="text" name="Hotel" [(ngModel)]="contract.Hotel" class="form-control">
+      </div>
+  
+      <div class="form-group">
+        <label >startdate</label>
+        <input formControlName="startdate" type="date" name="startdate"  [(ngModel)]="contract.startdate" class="form-control">
+      </div>
+  
+      <div class="form-group">
+        <label >enddate</label>
+        <input formControlName="enddate" type="date" name="enddate" [(ngModel)]="contract.enddate" class="form-control">
+      </div>
+      <div class="form-group">
+        <label >markup</label>
+        <input formControlName="markup" type="text" name="markup" [(ngModel)]="contract.markup" class="form-control">
+      </div>
+  
+  
+
+
+      <div class="row">
+        <div class="col-sm-12 table-responsive" formArrayName="roomDetails">
+        <table class="table">
+        <thead>
+        <tr>
+        <th style="white-space: nowrap;padding-right: 4em;float:center"><span class="required-field"></span>room type </th>
+        <th style="white-space: nowrap;padding-right: 4em;float:center">rprice </th>
+        <th style="white-space: nowrap;padding-right: 4em;float:center">max adults </th>
+        <th style="white-space: nowrap;padding-right: 4em;float:center">availablerooms</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let itemrow of addmore.controls.roomDetails['controls']; let i=index" [formGroupName]="i">
+         
+        <td> <textarea id="rtype{{i}}" formControlName="rtype" name="rtype"  class="form-control reset"></textarea></td>
+        <td> <textarea id="rprice{{i}}" formControlName="rprice" name="rprice"  class="form-control reset"></textarea></td>
+        <td> <textarea formControlName="maxadults" name="maxadults"  class="form-control reset"></textarea></td>
+        <td> <textarea formControlName="availablerooms" name="availablerooms"  class="form-control reset"></textarea></td>
+        <td> <button *ngIf="addmore.controls.roomDetails.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger"><i class="fa fa-minus-circle" aria-hidden="true"></i>delete</button></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr><td> <button type="button" (click)="addNewRow()" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button></td></tr>
+        </tfoot>
+        </table>
+        </div>
+         
+        </div>
+      
+  
+      <button class="btn btn-primary" type="submit" (click)="addContract()">Add Contract</button>
+  
+    </form>
+    
+  
+  
+  </div>
