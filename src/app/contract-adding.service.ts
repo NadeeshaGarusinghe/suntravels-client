@@ -9,9 +9,11 @@ export class ContractAddingService {
   constructor(private http: HttpClient) { }
 
   public doContractAdding(contract) {
-    console.log(contract);
     return this.http.post("http://localhost:9090/suntravels/addContract", contract, { responseType: 'text' as 'json' })
 
+  }
+  getHotels() {
+    return this.http.get("http://localhost:9090/suntravels/getHotels");
   }
 
 

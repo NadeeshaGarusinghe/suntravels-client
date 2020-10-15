@@ -10,7 +10,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./add-contracts.component.css']
 })
 export class AddContractsComponent implements OnInit {
-
+  Hotels: any;
   contract: Contract = new Contract(null, null, null, 15, [{
     "rtype": null, "rprice": null, "maxadults": null, "availablerooms": null
   }]);
@@ -28,7 +28,13 @@ export class AddContractsComponent implements OnInit {
       markup: [],
       roomDetails: this.fb.array([this.initItemRows()])
     });
+
+    let resp = this.service.getHotels();
+    resp.subscribe((data) => this.Hotels = data);
+    console.log(this.Hotels);
+
   }
+
 
 
 
@@ -57,10 +63,21 @@ export class AddContractsComponent implements OnInit {
   }
 
   addContract() {
+    this.addmore.value.Hotel = this.addmore.value.Hotel.hid;
     let resp = this.service.doContractAdding(this.addmore.value);
+    console.log("nnnnnnnnnnnnnn");
     console.log(this.addmore.value);
 
     resp.subscribe((data) => this.message = data);
+
+  }
+
+
+
+  onChangeHotel() {
+    //let Cont = this.addmore.controls['Hotel'].value;
+
+    //const hotelId = Cont.hid;
 
   }
 

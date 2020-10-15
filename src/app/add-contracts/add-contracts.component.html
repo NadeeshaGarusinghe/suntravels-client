@@ -2,10 +2,19 @@
     <h2>Contract Add Form</h2>
     <form  [formGroup]="addmore">
         <hr/>
+        <div>
+          {{message}}
+        </div>
       <div class="form-group">
-        <label >Hotel</label>
-        <input formControlName="Hotel" type="text" name="Hotel" [(ngModel)]="contract.Hotel" class="form-control">
+        <label >Hotel Name</label>
+      <select formControlName="Hotel" type="text" name="Hotel" [(ngModel)]="contract.Hotel" class="form-control" (change)="onChangeHotel()">
+          <!--<option value="" selected disabled>Select hotel</option>-->
+          <option *ngFor="let Hotel of Hotels" [ngValue]="Hotel">{{Hotel.name}}</option>
+      </select>
       </div>
+
+      
+
   
       <div class="form-group">
         <label >startdate</label>
