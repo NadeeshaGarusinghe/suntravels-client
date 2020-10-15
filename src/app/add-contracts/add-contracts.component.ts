@@ -22,7 +22,7 @@ export class AddContractsComponent implements OnInit {
 
   ngOnInit() {
     this.addmore = this.fb.group({
-      Hotel: [],
+      hid: [],
       startdate: [],
       enddate: [],
       markup: [],
@@ -63,7 +63,7 @@ export class AddContractsComponent implements OnInit {
   }
 
   addContract() {
-    this.addmore.value.Hotel = this.addmore.value.Hotel.hid;
+    this.addmore.value.hid = this.addmore.value.hid.hid;
     let resp = this.service.doContractAdding(this.addmore.value);
     console.log("nnnnnnnnnnnnnn");
     console.log(this.addmore.value);

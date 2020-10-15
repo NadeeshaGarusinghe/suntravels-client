@@ -1,6 +1,6 @@
 import { itemrow } from './model/itemrow.model';
 export class Contract {
-    public Hotel;
+    public hid;
     public startdate;
     public enddate;
     public itemRows;
@@ -8,14 +8,14 @@ export class Contract {
     public itemrow;
 
     public constructor(
-        Hotel: any,
+        hid: any,
         startdate: Date,
         enddate: Date,
         markup: number,
         roomDetails: Array<{ rprice: number, rtype: number, maxadults: number, availablerooms: number }>
         //[{ "rprice": any, "rtype": any, "maxadults": any, "availablerooms": any }]
     ) {
-        this.Hotel = Hotel;
+        this.hid = hid;
         this.startdate = startdate;
         this.enddate = enddate;
         this.markup = markup;
