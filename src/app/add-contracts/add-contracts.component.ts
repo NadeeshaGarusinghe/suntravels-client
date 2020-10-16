@@ -11,8 +11,9 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AddContractsComponent implements OnInit {
   Hotels: any;
+  RoomTypes: any;
   contract: Contract = new Contract(null, null, null, 15, [{
-    "rtype": null, "rprice": null, "maxadults": null, "availablerooms": null
+    "rtypeid": null, "rprice": null, "maxadults": null, "availablerooms": null
   }]);
   message: any;
   constructor(private fb: FormBuilder, private service: ContractAddingService) { }
@@ -29,9 +30,13 @@ export class AddContractsComponent implements OnInit {
       roomDetails: this.fb.array([this.initItemRows()])
     });
 
-    let resp = this.service.getHotels();
-    resp.subscribe((data) => this.Hotels = data);
-    console.log(this.Hotels);
+
+    let roomTypes = this.service.getRoomTypes();
+    roomTypes.subscribe((data) => this.RoomTypes = data);
+
+    let hotels = this.service.getHotels();
+    hotels.subscribe((data) => this.Hotels = data);
+
 
   }
 
@@ -47,7 +52,7 @@ export class AddContractsComponent implements OnInit {
       rprice: [],
       maxadults: [],
       availablerooms: [],
-      rtype: []
+      rtypeid: []
     });
   }
   addNewRow() {
@@ -63,9 +68,14 @@ export class AddContractsComponent implements OnInit {
   }
 
   addContract() {
+    for (let i = 0; i < this.addmore.value.roomDetails.length; i++) {
+      this.addmore.value.roomDetails[i].rtypeid = this.addmore.value.roomDetails[i].rtypeid.rtypeid;
+      console.log("qqqqqqqqqqq");
+    }
     this.addmore.value.hid = this.addmore.value.hid.hid;
     let resp = this.service.doContractAdding(this.addmore.value);
     console.log("nnnnnnnnnnnnnn");
+    let k = this.addmore.value;
     console.log(this.addmore.value);
 
     resp.subscribe((data) => this.message = data);
@@ -80,5 +90,12 @@ export class AddContractsComponent implements OnInit {
     //const hotelId = Cont.hid;
 
   }
+  addHotel() {
+    let resp = this.service.addHotel();
+
+    console.log(resp);
+  }
+
+
 
 }

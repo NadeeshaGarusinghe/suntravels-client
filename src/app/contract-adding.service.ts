@@ -16,5 +16,14 @@ export class ContractAddingService {
     return this.http.get("http://localhost:9090/suntravels/getHotels");
   }
 
+  getRoomTypes() {
+    return this.http.get("http://localhost:9090/suntravels/getRoomTypes");
+  }
+
+  addHotel() {
+    return ("bbbbbbbbbbb");
+
+  }
+
 
 }

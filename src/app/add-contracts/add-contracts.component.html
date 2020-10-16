@@ -1,3 +1,6 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
 <div class="container-fluid">
     <h2>Contract Add Form</h2>
     <form  [formGroup]="addmore">
@@ -7,11 +10,17 @@
         </div>
       <div class="form-group">
         <label >Hotel Name</label>
-      <select formControlName="hid" type="text" name="hid" [(ngModel)]="contract.hid" class="form-control" (change)="onChangeHotel()">
-          <!--<option value="" selected disabled>Select hotel</option>-->
-          <option *ngFor="let Hotel of Hotels" [ngValue]="Hotel">{{Hotel.name}}</option>
+        <a href="" (click)="addHotel()"> Didn't find the hotel? Add the hotel details first</a>
+      <select formControlName="hid" type="text" name="hid" [(ngModel)]="contract.hid" class="form-control" (change)="onChangeHotel()" >
+        <option value="" disabled selected>Choose your country</option>
+        <option *ngFor="let Hotel of Hotels" [ngValue]="Hotel">{{Hotel.name}}</option>
       </select>
       </div>
+
+
+  
+
+
 
       
 
@@ -46,8 +55,16 @@
         </thead>
         <tbody>
         <tr *ngFor="let itemrow of addmore.controls.roomDetails['controls']; let i=index" [formGroupName]="i">
-         
-        <td> <textarea id="rtype{{i}}" formControlName="rtype" name="rtype"  class="form-control reset"></textarea></td>
+
+      <td>
+        <div class="form-group">
+        <select id="rtypeid{{i}}" formControlName="rtypeid" name="rtypeid"  class="form-control reset" >
+          <option value="" disabled selected>Choose your roomtype</option>
+          <option *ngFor="let RoomType of RoomTypes" [ngValue]="RoomType" >{{RoomType.roomtype}}</option>
+        </select>
+        </div>
+      </td>
+
         <td> <textarea id="rprice{{i}}" formControlName="rprice" name="rprice"  class="form-control reset"></textarea></td>
         <td> <textarea formControlName="maxadults" name="maxadults"  class="form-control reset"></textarea></td>
         <td> <textarea formControlName="availablerooms" name="availablerooms"  class="form-control reset"></textarea></td>

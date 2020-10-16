@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { AddContractsComponent } from './add-contracts/add-contracts.component';
 import { FormBuilder, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddHotelComponent } from './add-hotel/add-hotel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddContractsComponent
+    AddContractsComponent,
+    AddHotelComponent
   ],
   imports: [
     BrowserModule,

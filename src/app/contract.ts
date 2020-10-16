@@ -12,7 +12,7 @@ export class Contract {
         startdate: Date,
         enddate: Date,
         markup: number,
-        roomDetails: Array<{ rprice: number, rtype: number, maxadults: number, availablerooms: number }>
+        roomDetails: Array<{ rprice: number, rtypeid: number, maxadults: number, availablerooms: number }>
         //[{ "rprice": any, "rtype": any, "maxadults": any, "availablerooms": any }]
     ) {
         this.hid = hid;
