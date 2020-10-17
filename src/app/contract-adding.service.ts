@@ -9,15 +9,15 @@ export class ContractAddingService {
   constructor(private http: HttpClient) { }
 
   public doContractAdding(contract) {
-    return this.http.post("http://localhost:9090/suntravels/addContract", contract, { responseType: 'text' as 'json' })
+    return this.http.post("http://localhost:9090/addContract", contract, { responseType: 'text' as 'json' })
 
   }
   getHotels() {
-    return this.http.get("http://localhost:9090/suntravels/getHotels");
+    return this.http.get("http://localhost:9090/getHotels");
   }
 
   getRoomTypes() {
-    return this.http.get("http://localhost:9090/suntravels/getRoomTypes");
+    return this.http.get("http://localhost:9090/getRoomTypes");
   }
 
   addHotel() {
