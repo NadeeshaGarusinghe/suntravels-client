@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContractAddingService {
+  check: any;
 
   constructor(private http: HttpClient) { }
 
@@ -25,5 +26,27 @@ export class ContractAddingService {
 
   }
 
+  public ViewContracts(checkindate, noofnights, noofroomswithadults) {
+    return this.http.get('http://localhost:9090/api/joinQuery3', {
+      params: {
+        checkindate: checkindate,
+        noofnights: noofnights,
+        noofroomswithadults: noofroomswithadults
+      }
+    });
+  }
 
+  setContract(checkindate, noofnights, noofroomswithadults) {
+    this.check = this.http.get('http://localhost:9090/api/joinQuery3', {
+      params: {
+        checkindate: checkindate,
+        noofnights: noofnights,
+        noofroomswithadults: noofroomswithadults
+      }
+    });
+  }
+
+  getContract() {
+    return this.check;
+  }
 }

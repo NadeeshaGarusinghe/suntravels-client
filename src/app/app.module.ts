@@ -11,6 +11,16 @@ import { AddHotelComponent } from './add-hotel/add-hotel.component';
 import { HomeComponent } from './home/home.component';
 import { SearchContractComponent } from './search-contract/search-contract.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ViewResultComponent } from './view-result/view-result.component';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AddContractsComponent,
     AddHotelComponent,
     HomeComponent,
-    SearchContractComponent
+    SearchContractComponent,
+    ViewResultComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +37,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxMatSelectSearchModule,
+    MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   providers: [ContractAddingService, FormBuilder],
   bootstrap: [AppComponent]

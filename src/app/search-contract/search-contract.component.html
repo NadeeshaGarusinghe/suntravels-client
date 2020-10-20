@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,27 +8,26 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
+
 <body>
+    <form  [formGroup]="addmore" >
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <!-- Brand/logo -->
-  <a class="navbar-brand" href="#">Logo</a>
-  
-  <!-- Links -->
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/addContract"> Add a Contract</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/searchContract"> Search Contracts</a>
-    </li>
-    
-  </ul>
-</nav>
+        <div class="form-group">
+            <label >checkindate</label>
+            <input  formControlName="checkindate" type="date" name="checkindate" [(ngModel)]="searchModel.checkindate" class="form-control" >
+        </div>
 
+        <div class="form-group">
+            <label >noofnights</label>
+            <input  type="number" formControlName="noofnights" name="noofnights"  [(ngModel)]="searchModel.noofnights" class="form-control" >
+        </div>
 
+        <div class="form-group" >
+            <label>noofroomswithadults</label>
+            <input  type="number" formControlName="noofroomswithadults" name="noofroomswithadults"   [(ngModel)]="searchModel.noofroomswithadults" class="form-control">
+        </div>
 
+        <button (click)="onsubmit()">Search</button>
+    </form>
 </body>
-</html>
-
-<p>search-contract works!</p>
+  
