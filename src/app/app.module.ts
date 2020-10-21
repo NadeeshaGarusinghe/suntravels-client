@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddContractsComponent } from './add-contracts/add-contracts.component';
-import { FormBuilder, FormsModule } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddHotelComponent } from './add-hotel/add-hotel.component';
 import { HomeComponent } from './home/home.component';
@@ -20,7 +20,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ViewResultComponent } from './view-result/view-result.component';
 import { Router, ActivatedRoute } from '@angular/router';
-
 
 @NgModule({
   declarations: [
@@ -45,6 +44,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     MatSortModule,
     MatInputModule,
     MatFormFieldModule,
+
   ],
   providers: [ContractAddingService, FormBuilder],
   bootstrap: [AppComponent]

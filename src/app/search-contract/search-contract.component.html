@@ -22,12 +22,33 @@
             <input  type="number" formControlName="noofnights" name="noofnights"  [(ngModel)]="searchModel.noofnights" class="form-control" >
         </div>
 
-        <div class="form-group" >
-            <label>noofroomswithadults</label>
-            <input  type="number" formControlName="noofroomswithadults" name="noofroomswithadults"   [(ngModel)]="searchModel.noofroomswithadults" class="form-control">
-        </div>
+       
 
-        <button (click)="onsubmit()">Search</button>
+        
+        <div class="row">
+            <div class="col-sm-12 table-responsive" formArrayName="noOfRoomsWithAdults">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="white-space: nowrap;padding-right: 4em;float:center">noofroomswithadults </th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let itemrow of addmore.controls.noOfRoomsWithAdults['controls']; let i=index" [formGroupName]="i">
+    
+                        <td> <input type="number" formControlName="maxadults" name="maxadults"  class="form-control reset"></td>
+                        <td> <button *ngIf="addmore.controls.noOfRoomsWithAdults.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger"><i class="fa fa-minus-circle" aria-hidden="true"></i>delete</button></td>
+                    </tr>
+              </tbody>
+              <tfoot>
+                <tr><td> <button type="button" (click)="addNewRow()" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button></td></tr>
+              </tfoot>
+            </table>
+          </div>
+             
+         </div>
+
+        <button  class="btn btn-primary" type="submit" (click)="onsubmit()">Search</button>
     </form>
 </body>
   

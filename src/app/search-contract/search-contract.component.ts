@@ -1,31 +1,23 @@
-import { SearchData } from './../search-data';
 import { ContractAddingService } from './../contract-adding.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { formatDate } from '@angular/common';
-import { MarkedupContract } from '../markedup-contract';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { SearchData } from '../searchData';
 
 @Component({
   selector: 'app-search-contract',
   templateUrl: './search-contract.component.html',
   styleUrls: ['./search-contract.component.css']
 })
-
 export class SearchContractComponent implements OnInit {
 
   massage: any;
-  ELEMENT_DATA: MarkedupContract[];
-  displayedColumns: string[] = ['name', 'roomtype', 'markedupprice', 'availabilitystatus'];
-  dataSource: any;
-  searchModel = new SearchData(null, null, null);
+  searchModel: SearchData = new SearchData(null, null, [{
+    "maxadults": null
+  }]);
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(private fb: FormBuilder, private service: ContractAddingService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private service: ContractAddingService, private router: Router) { }
 
   public addmore: FormGroup;
 
@@ -33,49 +25,47 @@ export class SearchContractComponent implements OnInit {
     this.addmore = this.fb.group({
       checkindate: [],
       noofnights: [],
-      noofroomswithadults: [],
-
+      noOfRoomsWithAdults: this.fb.array([this.initItemRows()])
     });
+  }
 
+  get formArr() {
+    return this.addmore.get('noOfRoomsWithAdults') as FormArray;
+  }
+
+  initItemRows() {
+    return this.fb.group({
+      maxadults: []
+    });
+  }
+
+  addNewRow() {
+    this.formArr.push(this.initItemRows());
+  }
+
+  deleteRow(index: number) {
+    this.formArr.removeAt(index);
   }
 
   onsubmit() {
-    let format = 'yyyy/MM/dd';
-    let mydate = this.searchModel.checkindate;
-    let locale = 'en-US';
-    let formattedDate = formatDate(mydate, format, locale);
-    console.log(formattedDate);
-
-    this.service.setContract(formattedDate, this.searchModel.noofnights, this.searchModel.noofroomswithadults);
-
-    let resp = this.service.ViewContracts(formattedDate, this.searchModel.noofnights, this.searchModel.noofroomswithadults);
-    resp.subscribe(data => {
-      console.log(data);
-      this.massage = data;
-      this.getAllContracts(formattedDate, this.searchModel.noofnights, this.searchModel.noofroomswithadults);
-    });
+    let formattedDate = this.formatDate(this.searchModel.checkindate);
+    let adultArray = [];
+    for (let value of this.addmore.value.noOfRoomsWithAdults) {
+      adultArray.push(value.maxadults);
+    }
+    this.service.setContract(formattedDate, this.searchModel.noofnights, adultArray);
     this.router.navigate(['viewContracts'], {
       state: {
         checkindate: formattedDate,
         noofadults: this.searchModel.noofnights,
-        noofroomswithadults: this.searchModel.noofroomswithadults
+        noofroomswithadults: adultArray
       }
     });
-
   }
 
-  getAllContracts(checkindate: string, noofnights: number, noofadults: number) {
-    let resp = this.service.ViewContracts(checkindate, noofnights, noofadults);
-    this.dataSource = new MatTableDataSource<MarkedupContract>(this.ELEMENT_DATA);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    resp.subscribe(data => this.dataSource = data);
-
+  formatDate(date: string) {
+    let format = 'yyyy/MM/dd';
+    let locale = 'en-US';
+    return formatDate(date, format, locale);
   }
-
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-  }
-
 }

@@ -2,30 +2,38 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <div class="container-fluid">
     <h2>Contract Add Form</h2>
-    <form  [formGroup]="addmore">
+    <h1 *ngIf="!show">Contract is added Successfully!</h1>
+    <form  [formGroup]="addmore"  *ngIf="show">
         
       <div class="form-group">
         <label >Hotel Name</label>
         <a href="" (click)="addHotel()"> Didn't find the hotel? Add the hotel details first</a>
-        <select formControlName="hid" type="text" name="hid" [(ngModel)]="contract.hid" class="form-control" (change)="onChangeHotel()" >
+        <select   formControlName="hid" type="text" name="hid" [(ngModel)]="contract.hid" class="form-control" (change)="onChangeHotel()" >
           <option value="" disabled selected>Choose the Hotel</option>
           <option *ngFor="let Hotel of Hotels" [ngValue]="Hotel">{{Hotel.name}}</option>
         </select>
+        <span *ngIf="addmore.get('hid').touched && addmore.get('hid').hasError('required')" class="text-danger">please select the hotel</span>
+
       </div>     
 
       <div class="form-group">
         <label >startdate</label>
         <input formControlName="startdate" type="date" name="startdate"  [(ngModel)]="contract.startdate" class="form-control">
+        <span *ngIf="addmore.get('startdate').touched && addmore.get('startdate').hasError('required')" class="text-danger">please select the start date</span>
       </div>
   
       <div class="form-group">
         <label >enddate</label>
-        <input formControlName="enddate" type="date" name="enddate" [(ngModel)]="contract.enddate" class="form-control">
+        <input  formControlName="enddate" type="date" name="enddate" [(ngModel)]="contract.enddate" class="form-control">
+        <span *ngIf="addmore.get('enddate').touched && addmore.get('enddate').hasError('required')" class="text-danger">please select the end date</span>
+        <span *ngIf="addmore.errors ?. misMatch" class="text-danger"> end date should larger than the start date!</span>
+
       </div>
 
       <div class="form-group">
         <label >markup</label>
-        <input formControlName="markup" type="text" name="markup" [(ngModel)]="contract.markup" class="form-control">
+        <input formControlName="markup" type="text"  class="form-control" name="markup" [(ngModel)]="contract.markup" >
+        <span *ngIf="addmore.get('markup').touched && addmore.get('markup').hasError('required')" class="text-danger">markup is required!</span>
       </div>
 
      <div class="row">
@@ -46,14 +54,22 @@
                       <div class="form-group">
                         <select id="rtypeid{{i}}" formControlName="rtypeid" name="rtypeid"  class="form-control reset" >
                           <option value="" disabled selected>Choose your roomtype</option>
-                          <option *ngFor="let RoomType of RoomTypes" [ngValue]="RoomType" >{{RoomType.roomtype}}</option>
+                          <option  *ngFor="let RoomType of RoomTypes" [ngValue]="RoomType" >{{RoomType.roomtype}}</option>
                         </select>
+                        <span *ngIf="itemrow.get('rtypeid').touched && itemrow.get('rtypeid').hasError('required')" class="text-danger">Select the Room type!</span>
+
                       </div>
                     </td>
 
                     <td> <textarea id="rprice{{i}}" formControlName="rprice" name="rprice"  class="form-control reset"></textarea></td>
+                    <span *ngIf="itemrow.get('rprice').touched && itemrow.get('rprice').hasError('required')" class="text-danger">room price is required!</span>
+
                     <td> <textarea formControlName="maxadults" name="maxadults"  class="form-control reset"></textarea></td>
+                    <span *ngIf="itemrow.get('maxadults').touched && itemrow.get('maxadults').hasError('required')" class="text-danger">Maximum number of adults is required!</span>
+
                     <td> <textarea formControlName="availablerooms" name="availablerooms"  class="form-control reset"></textarea></td>
+                    <span *ngIf="itemrow.get('availablerooms').touched && itemrow.get('availablerooms').hasError('required')" class="text-danger">No of available rooms is required!</span>
+
                     <td> <button *ngIf="addmore.controls.roomDetails.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger"><i class="fa fa-minus-circle" aria-hidden="true"></i>delete</button></td>
                 </tr>
           </tbody>
@@ -65,7 +81,7 @@
          
      </div>
  
-     <button class="btn btn-primary" type="submit" (click)="addContract()">Add Contract</button>
+     <button class="btn btn-primary" type="submit" (click)="addContract()" [disabled]="!addmore.valid">Add Contract</button>
   
     </form> 
   </div>

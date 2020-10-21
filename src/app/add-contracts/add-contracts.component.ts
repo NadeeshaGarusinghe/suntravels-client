@@ -1,7 +1,8 @@
 import { ContractAddingService } from './../contract-adding.service';
 import { Component, OnInit } from '@angular/core';
 import { Contract } from '../contract';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EnddateValidator } from '../shared/enddate.validator';
 
 @Component({
   selector: 'app-add-contracts',
@@ -16,18 +17,19 @@ export class AddContractsComponent implements OnInit {
     "rtypeid": null, "rprice": null, "maxadults": null, "availablerooms": null
   }]);
   message: any;
+  show: boolean = true;
   constructor(private fb: FormBuilder, private service: ContractAddingService) { }
 
   public addmore: FormGroup;
 
   ngOnInit() {
     this.addmore = this.fb.group({
-      hid: [],
-      startdate: [],
-      enddate: [],
-      markup: [],
+      hid: ['', Validators.required],
+      startdate: ['', Validators.required],
+      enddate: ['', Validators.required],
+      markup: ['', Validators.required],
       roomDetails: this.fb.array([this.initItemRows()])
-    });
+    }, { validator: EnddateValidator });
 
 
     let roomTypes = this.service.getRoomTypes();
@@ -43,20 +45,21 @@ export class AddContractsComponent implements OnInit {
 
   initItemRows() {
     return this.fb.group({
-      rprice: [],
-      maxadults: [],
-      availablerooms: [],
-      rtypeid: []
+      rprice: ['', Validators.required],
+      maxadults: ['', Validators.required],
+      availablerooms: ['', Validators.required],
+      rtypeid: ['', Validators.required]
     });
   }
+
   addNewRow() {
     this.formArr.push(this.initItemRows());
-
   }
+
   deleteRow(index: number) {
     this.formArr.removeAt(index);
-
   }
+
   submit() {
     console.log(this.addmore.value);
   }
@@ -68,7 +71,8 @@ export class AddContractsComponent implements OnInit {
     this.addmore.value.hid = this.addmore.value.hid.hid;
     let resp = this.service.doContractAdding(this.addmore.value);
     resp.subscribe((data) => this.message = data);
-
+    this.show == false;
+    console.log("Contract is Added successfully");
   }
 
   onChangeHotel() {

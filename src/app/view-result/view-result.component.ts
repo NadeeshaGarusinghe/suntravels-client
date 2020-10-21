@@ -14,7 +14,7 @@ import { MarkedupContract } from '../markedup-contract';
 export class ViewResultComponent implements OnInit {
 
   ELEMENT_DATA: MarkedupContract[] = [];
-  displayedColumns: string[] = ['name', 'roomtype', 'markedupprice', 'availabilitystatus'];
+  displayedColumns: string[] = ['name', 'roomtype', 'markedupprice($)', 'availabilitystatus'];
   dataSource = new MatTableDataSource<MarkedupContract>(this.ELEMENT_DATA);
 
 

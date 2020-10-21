@@ -1,17 +1,21 @@
+import { itemrow } from './model/itemrow.model';
+
 export class SearchData {
     public checkindate;
     public noofnights;
-    public noofroomswithadults;
+    public noOfRoomsWithAdults;
+
+
 
     public constructor(
         checkindate: Date,
         noofnights: number,
-        noofroomswithadults: number,
+        noOfRoomsWithAdults: Array<{ maxadults: number }>
 
     ) {
         this.checkindate = checkindate;
         this.noofnights = noofnights;
-        this.noofroomswithadults = noofroomswithadults;
+        this.noOfRoomsWithAdults = noOfRoomsWithAdults;
 
 
     }
