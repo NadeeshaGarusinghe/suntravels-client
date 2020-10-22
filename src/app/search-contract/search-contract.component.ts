@@ -1,9 +1,10 @@
 import { ContractAddingService } from './../contract-adding.service';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
 import { Router } from '@angular/router';
 import { SearchData } from '../searchData';
+import { CheckinDateValidator } from '../shared/checkindate.validator';
 
 @Component({
   selector: 'app-search-contract',
@@ -23,10 +24,10 @@ export class SearchContractComponent implements OnInit {
 
   ngOnInit() {
     this.addmore = this.fb.group({
-      checkindate: [],
-      noofnights: [],
+      checkindate: ['', Validators.required],
+      noofnights: ['', Validators.required],
       noOfRoomsWithAdults: this.fb.array([this.initItemRows()])
-    });
+    }, { validator: CheckinDateValidator });
   }
 
   get formArr() {
@@ -35,7 +36,7 @@ export class SearchContractComponent implements OnInit {
 
   initItemRows() {
     return this.fb.group({
-      maxadults: []
+      maxadults: ['', Validators.required]
     });
   }
 

@@ -32,7 +32,7 @@
 
       <div class="form-group">
         <label >markup</label>
-        <input formControlName="markup" type="text"  class="form-control" name="markup" [(ngModel)]="contract.markup" >
+        <input formControlName="markup" type="number"  class="form-control" name="markup" [(ngModel)]="contract.markup"  >
         <span *ngIf="addmore.get('markup').touched && addmore.get('markup').hasError('required')" class="text-danger">markup is required!</span>
       </div>
 
@@ -61,7 +61,7 @@
                       </div>
                     </td>
 
-                    <td> <textarea id="rprice{{i}}" formControlName="rprice" name="rprice"  class="form-control reset"></textarea></td>
+                    <td> <textarea id="rprice{{i}}"  formControlName="rprice" name="rprice"  class="form-control reset"></textarea></td>
                     <span *ngIf="itemrow.get('rprice').touched && itemrow.get('rprice').hasError('required')" class="text-danger">room price is required!</span>
 
                     <td> <textarea formControlName="maxadults" name="maxadults"  class="form-control reset"></textarea></td>

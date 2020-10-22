@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ViewResultComponent } from './view-result/view-result.component';
 import { Router, ActivatedRoute } from '@angular/router';
 
+
 @NgModule({
   declarations: [
     AppComponent,

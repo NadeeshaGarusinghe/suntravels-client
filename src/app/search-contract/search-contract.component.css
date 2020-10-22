@@ -5,3 +5,8 @@ table{
 th.mat-sort-header-sorted{
     color: black;
 }
+
+
+input.ng-touched.ng-invalid{
+    border:1px solid red;
+}

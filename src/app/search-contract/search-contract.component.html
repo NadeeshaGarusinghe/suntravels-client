@@ -15,12 +15,16 @@
         <div class="form-group">
             <label >checkindate</label>
             <input  formControlName="checkindate" type="date" name="checkindate" [(ngModel)]="searchModel.checkindate" class="form-control" >
-        </div>
+            <span *ngIf="addmore.get('checkindate').touched && addmore.get('checkindate').hasError('required')" class="text-danger">please choose the checkin date!</span>
+            <span *ngIf="addmore.errors ?. misMatch && addmore.get('checkindate').touched" class="text-danger"> please choose a valid date!!</span>
+
+          </div>
 
         <div class="form-group">
             <label >noofnights</label>
-            <input  type="number" formControlName="noofnights" name="noofnights"  [(ngModel)]="searchModel.noofnights" class="form-control" >
-        </div>
+            <input  type="number" formControlName="noofnights" name="noofnights"  [(ngModel)]="searchModel.noofnights" class="form-control" min="0" oninput="validity.valid||(value='');">
+            <span *ngIf="addmore.get('noofnights').touched && addmore.get('noofnights').hasError('required')" class="text-danger">please enter the number of nights you want to stay!</span>
+          </div>
 
        
 
@@ -36,7 +40,8 @@
                 <tbody>
                     <tr *ngFor="let itemrow of addmore.controls.noOfRoomsWithAdults['controls']; let i=index" [formGroupName]="i">
     
-                        <td> <input type="number" formControlName="maxadults" name="maxadults"  class="form-control reset"></td>
+                        <td> <input type="number" formControlName="maxadults" name="maxadults"  class="form-control reset" min="0" oninput="validity.valid||(value='');"></td>
+                        <span *ngIf="itemrow.get('maxadults').touched && itemrow.get('maxadults').hasError('required')" class="text-danger">maximum adullt for the room is required!</span>
                         <td> <button *ngIf="addmore.controls.noOfRoomsWithAdults.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger"><i class="fa fa-minus-circle" aria-hidden="true"></i>delete</button></td>
                     </tr>
               </tbody>
@@ -48,7 +53,7 @@
              
          </div>
 
-        <button  class="btn btn-primary" type="submit" (click)="onsubmit()">Search</button>
+        <button  class="btn btn-primary" type="submit" (click)="onsubmit()" [disabled]="!addmore.valid">Search</button>
     </form>
 </body>
   
