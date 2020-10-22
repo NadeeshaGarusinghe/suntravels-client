@@ -55,7 +55,7 @@ export class SearchContractComponent implements OnInit {
       adultArray.push(value.maxadults);
     }
     this.service.setContract(formattedDate, this.searchModel.noofnights, adultArray);
-    this.router.navigate(['viewContracts'], {
+    this.router.navigate(['viewResults'], {
       state: {
         checkindate: formattedDate,
         noofadults: this.searchModel.noofnights,

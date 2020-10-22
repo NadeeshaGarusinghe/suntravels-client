@@ -1,3 +1,4 @@
+import { ViewOriginalContractsComponent } from './view-original-contracts/view-original-contracts.component';
 import { ViewResultComponent } from './view-result/view-result.component';
 import { SearchContractComponent } from './search-contract/search-contract.component';
 import { HomeComponent } from './home/home.component';
@@ -10,7 +11,9 @@ const routes: Routes = [
   { path: "addContract", component: AddContractsComponent },
   { path: "home", component: HomeComponent },
   { path: "searchContract", component: SearchContractComponent },
-  { path: "viewContracts", component: ViewResultComponent },
+  { path: "viewResults", component: ViewResultComponent },
+  { path: "viewOriginalContracts", component: ViewOriginalContractsComponent },
+
 ];
 
 @NgModule({

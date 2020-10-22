@@ -17,6 +17,13 @@ export class ContractAddingService {
     return this.http.get("http://localhost:9090/getHotels");
   }
 
+  getOriginalContracts() {
+    console.log("nnnnnnnnnnnnnn");
+    let y = this.http.get("http://localhost:9090//getOriginalContracts");
+    console.log(y);
+    return y
+  }
+
   getRoomTypes() {
     return this.http.get("http://localhost:9090/getRoomTypes");
   }

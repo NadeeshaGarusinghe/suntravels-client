@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ViewResultComponent } from './view-result/view-result.component';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ViewOriginalContractsComponent } from './view-original-contracts/view-original-contracts.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     HomeComponent,
     SearchContractComponent,
     ViewResultComponent,
+    ViewOriginalContractsComponent,
   ],
   imports: [
     BrowserModule,

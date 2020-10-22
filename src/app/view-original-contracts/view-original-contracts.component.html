@@ -1,0 +1,88 @@
+
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    /* Float four columns side by side */
+    .column {
+      float: left;
+      width: 25%;
+      padding: 0 10px;
+    }
+    
+    /* Remove extra left and right margins, due to padding */
+    .row {margin: 0 -5px;}
+    
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    
+    /* Responsive columns */
+    @media screen and (max-width: 600px) {
+      .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+      }
+    }
+    
+    /* Style the counter cards */
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      padding: 16px;
+      text-align: center;
+      background-color: #f1f1f1;
+    }
+    </style>
+
+<tr *ngFor="let obj of OriginalContracts">
+    <div class="row">
+    <div class="column">
+<div class="m-4 card" style="width: 40rem;">
+        <span class="border border-primary">
+
+    <div class="card-body">
+      <h1 class="card-title">{{obj.hotelName}}</h1>
+      <p class="card-text" >Start Date:- {{obj.contract.startdate | date : "dd.MM.y"}}</p>
+     <p class="card-text">End Date:- {{obj.contract.enddate | date : "dd.MM.y"}}</p>
+     <p class="card-text">Markup:- {{obj.contract.markup}} $</p>
+
+      <table class="table">
+        <thead>
+          <tr >
+            <th scope="col">Room Type</th>
+            <th scope="col">Price</th>
+            <th scope="col">Max Adults</th>
+            <th scope="col">No of Rooms</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let detail of obj.contract.roomDetails; let i=index" >
+            <td >{{obj.roomTypes[i]}}</td>
+            <td>{{detail.rprice}}</td>
+            <td>{{detail.maxadults}}</td>
+            <td>{{detail.availablerooms}}</td>
+
+
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+   </span>
+</div>
+</div>
+</div>
+
+
+</tr>
