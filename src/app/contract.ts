@@ -1,4 +1,3 @@
-import { itemrow } from './model/itemrow.model';
 export class Contract {
     public hid;
     public startdate;

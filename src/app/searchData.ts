@@ -1,4 +1,3 @@
-import { itemrow } from './model/itemrow.model';
 
 export class SearchData {
     public checkindate;

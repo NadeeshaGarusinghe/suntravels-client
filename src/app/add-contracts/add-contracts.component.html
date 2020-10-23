@@ -31,7 +31,7 @@
 
       <div class="form-group">
         <label >markup</label>
-        <input formControlName="markup" type="number"  class="form-control" name="markup" [(ngModel)]="contract.markup"  >
+        <input formControlName="markup" type="number"  class="form-control" name="markup" [(ngModel)]="contract.markup" min="0">
         <span *ngIf="addmore.get('markup').touched && addmore.get('markup').hasError('required')" class="text-danger">markup is required!</span>
       </div>
 
@@ -60,13 +60,16 @@
                       </div>
                     </td>
 
-                    <td> <input id="rprice{{i}}"  type="number" formControlName="rprice" name="rprice"  class="form-control reset">
+                    <td> <input id="rprice{{i}}"  type="number" formControlName="rprice" name="rprice"  class="form-control reset" min="0">
                     <span *ngIf="itemrow.get('rprice').touched && itemrow.get('rprice').hasError('required')" class="text-danger">room price is required!</span>
                   </td>
-                    <td> <input formControlName="maxadults" type="number" name="maxadults"  class="form-control reset">
+                    <td> <input formControlName="maxadults" type="number" name="maxadults"  class="form-control reset" 
+                      step="1"
+                      onkeypress="return event.charCode >= 48 && event.charCode <= 57" min="1" oninput="validity.valid||(value='');">
                     <span *ngIf="itemrow.get('maxadults').touched && itemrow.get('maxadults').hasError('required')" class="text-danger">Maximum number of adults is required!</span>
                   </td>
-                    <td> <input formControlName="availablerooms" type="number" name="availablerooms"  class="form-control reset">
+                    <td> <input formControlName="availablerooms" type="number" name="availablerooms"  class="form-control reset" step="1"
+                      onkeypress="return event.charCode >= 48 && event.charCode <= 57" min="1" oninput="validity.valid||(value='');">
                     <span *ngIf="itemrow.get('availablerooms').touched && itemrow.get('availablerooms').hasError('required')" class="text-danger">No of available rooms is required!</span>
                   </td>
                     <td> <button *ngIf="addmore.controls.roomDetails.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger"><i class="fa fa-minus-circle" aria-hidden="true"></i>delete</button></td>

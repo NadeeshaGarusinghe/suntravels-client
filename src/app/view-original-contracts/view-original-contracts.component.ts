@@ -1,5 +1,4 @@
 import { ContractAddingService } from './../contract-adding.service';
-import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
