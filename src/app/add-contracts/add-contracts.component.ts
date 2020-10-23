@@ -23,6 +23,7 @@ export class AddContractsComponent implements OnInit {
   public addmore: FormGroup;
 
   ngOnInit() {
+    this.show = true;
     this.addmore = this.fb.group({
       hid: ['', Validators.required],
       startdate: ['', Validators.required],
@@ -71,9 +72,9 @@ export class AddContractsComponent implements OnInit {
     this.addmore.value.hid = this.addmore.value.hid.hid;
     let resp = this.service.doContractAdding(this.addmore.value);
     resp.subscribe((data) => this.message = data);
-    this.show == false;
-    console.log("Contract is Added successfully");
+    this.show = false;
   }
+
 
   onChangeHotel() {
     //let Cont = this.addmore.controls['Hotel'].value;

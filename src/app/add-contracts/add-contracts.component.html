@@ -2,8 +2,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <div class="container-fluid">
     <h2>Contract Add Form</h2>
-    <h1 *ngIf="!show">Contract is added Successfully!</h1>
-    <form  [formGroup]="addmore"  *ngIf="show">
+    <form  [formGroup]="addmore"  *ngIf=show >
         
       <div class="form-group">
         <label >Hotel Name</label>
@@ -61,15 +60,15 @@
                       </div>
                     </td>
 
-                    <td> <textarea id="rprice{{i}}"  formControlName="rprice" name="rprice"  class="form-control reset"></textarea></td>
+                    <td> <input id="rprice{{i}}"  type="number" formControlName="rprice" name="rprice"  class="form-control reset">
                     <span *ngIf="itemrow.get('rprice').touched && itemrow.get('rprice').hasError('required')" class="text-danger">room price is required!</span>
-
-                    <td> <textarea formControlName="maxadults" name="maxadults"  class="form-control reset"></textarea></td>
+                  </td>
+                    <td> <input formControlName="maxadults" type="number" name="maxadults"  class="form-control reset">
                     <span *ngIf="itemrow.get('maxadults').touched && itemrow.get('maxadults').hasError('required')" class="text-danger">Maximum number of adults is required!</span>
-
-                    <td> <textarea formControlName="availablerooms" name="availablerooms"  class="form-control reset"></textarea></td>
+                  </td>
+                    <td> <input formControlName="availablerooms" type="number" name="availablerooms"  class="form-control reset">
                     <span *ngIf="itemrow.get('availablerooms').touched && itemrow.get('availablerooms').hasError('required')" class="text-danger">No of available rooms is required!</span>
-
+                  </td>
                     <td> <button *ngIf="addmore.controls.roomDetails.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger"><i class="fa fa-minus-circle" aria-hidden="true"></i>delete</button></td>
                 </tr>
           </tbody>
@@ -81,7 +80,10 @@
          
      </div>
  
-     <button class="btn btn-primary" type="submit" (click)="addContract()" [disabled]="!addmore.valid">Add Contract</button>
+     <button class="btn btn-primary" type="submit" (click)="addContract()" [disabled]="!addmore.valid"  >Add Contract</button>
   
     </form> 
+    <div class="alert alert-success" role="alert" *ngIf=!show>
+      Contract is added Successfully!    </div>
+    <a *ngIf=!show  href="/addContract">need to add another contract?</a>
   </div>

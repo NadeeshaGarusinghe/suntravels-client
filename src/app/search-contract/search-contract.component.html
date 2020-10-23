@@ -13,7 +13,7 @@
     <form  [formGroup]="addmore" >
 
         <div class="form-group">
-            <label >checkindate</label>
+            <label >Check in Date</label>
             <input  formControlName="checkindate" type="date" name="checkindate" [(ngModel)]="searchModel.checkindate" class="form-control" >
             <span *ngIf="addmore.get('checkindate').touched && addmore.get('checkindate').hasError('required')" class="text-danger">please choose the checkin date!</span>
             <span *ngIf="addmore.errors ?. misMatch && addmore.get('checkindate').touched" class="text-danger"> please choose a valid date!!</span>
@@ -21,7 +21,7 @@
           </div>
 
         <div class="form-group">
-            <label >noofnights</label>
+            <label >No of Nights</label>
             <input  type="number" formControlName="noofnights" name="noofnights"  [(ngModel)]="searchModel.noofnights" class="form-control" min="0" oninput="validity.valid||(value='');">
             <span *ngIf="addmore.get('noofnights').touched && addmore.get('noofnights').hasError('required')" class="text-danger">please enter the number of nights you want to stay!</span>
           </div>
@@ -34,7 +34,7 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th style="white-space: nowrap;padding-right: 4em;float:center">noofroomswithadults </th>
+                    <th style="white-space: nowrap;padding-right: 4em;float:center">No of Adults in the Room </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -46,7 +46,7 @@
                     </tr>
               </tbody>
               <tfoot>
-                <tr><td> <button type="button" (click)="addNewRow()" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button></td></tr>
+                <tr><td> <button type="button" (click)="addNewRow()" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add another Room</button></td></tr>
               </tfoot>
             </table>
           </div>
