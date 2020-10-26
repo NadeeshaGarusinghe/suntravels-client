@@ -22,7 +22,7 @@
     <!-- markedupprice Column -->
     <ng-container matColumnDef="markedupprice($)">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Marked up Price ($) </th>
-      <td mat-cell *matCellDef="let element"> {{element.markedupprice}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.markedupprice | number:'1.0-2'}} </td>
     </ng-container>
 
         <!-- availabilitystatus Column -->
