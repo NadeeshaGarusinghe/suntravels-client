@@ -1,6 +1,15 @@
+<style>
+ 
+  div {text-align: center;}
+  </style>
 
 
-<tr *ngFor="let obj of OriginalContracts">
+<div class="m-4">
+<label >Enter the Hotel: &nbsp;</label>
+<input [(ngModel)]='hotelName'>
+<button type="button" (click)="onHotelFilter()">Search</button>
+</div>
+<tr *ngFor="let obj of OriginalContracts|filter:SearchHotel:'hotelName'">
     <div class="row">
     <div class="column ml-4">
 <div class="m-4  card" style="width: 40rem;">

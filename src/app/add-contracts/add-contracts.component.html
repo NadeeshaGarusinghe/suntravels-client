@@ -16,13 +16,13 @@
       </div>     
 
       <div class="form-group">
-        <label >startdate</label>
+        <label >Start Date</label>
         <input formControlName="startdate" type="date" name="startdate"  [(ngModel)]="contract.startdate" class="form-control">
         <span *ngIf="addmore.get('startdate').touched && addmore.get('startdate').hasError('required')" class="text-danger">please select the start date</span>
       </div>
   
       <div class="form-group">
-        <label >enddate</label>
+        <label >End Date</label>
         <input  formControlName="enddate" type="date" name="enddate" [(ngModel)]="contract.enddate" class="form-control">
         <span *ngIf="addmore.get('enddate').touched && addmore.get('enddate').hasError('required')" class="text-danger">please select the end date</span>
         <span *ngIf="addmore.errors ?. misMatch" class="text-danger"> end date should larger than the start date!</span>
@@ -30,7 +30,7 @@
       </div>
 
       <div class="form-group">
-        <label >markup</label>
+        <label >Markup</label>
         <input formControlName="markup" type="number"  class="form-control" name="markup" [(ngModel)]="contract.markup" min="0">
         <span *ngIf="addmore.get('markup').touched && addmore.get('markup').hasError('required')" class="text-danger">markup is required!</span>
       </div>
@@ -40,10 +40,10 @@
           <table class="table">
             <thead>
               <tr>
-                <th style="white-space: nowrap;padding-right: 4em;float:center"><span class="required-field"></span>room type </th>
-                <th style="white-space: nowrap;padding-right: 4em;float:center">rprice </th>
-                <th style="white-space: nowrap;padding-right: 4em;float:center">max adults </th>
-                <th style="white-space: nowrap;padding-right: 4em;float:center">availablerooms</th>
+                <th style="white-space: nowrap;padding-right: 4em;float:center"><span class="required-field"></span>Room Type </th>
+                <th style="white-space: nowrap;padding-right: 4em;float:center">Room Price </th>
+                <th style="white-space: nowrap;padding-right: 4em;float:center">Maximum Adults </th>
+                <th style="white-space: nowrap;padding-right: 4em;float:center">Available Rooms</th>
               </tr>
             </thead>
             <tbody>
@@ -87,6 +87,6 @@
   
     </form> 
     <div class="alert alert-success" role="alert" *ngIf=!show>
-      Contract is added Successfully!    </div>
+      {{message}}   </div>
     <a *ngIf=!show  href="/addContract">need to add another contract?</a>
   </div>

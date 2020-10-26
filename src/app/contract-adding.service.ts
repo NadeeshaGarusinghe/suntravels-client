@@ -34,7 +34,7 @@ export class ContractAddingService {
   }
 
   public ViewContracts(checkindate, noofnights, noofroomswithadults) {
-    return this.http.get('http://localhost:9090/api/joinQuery3', {
+    return this.http.get('http://localhost:9090/searchResults', {
       params: {
         checkindate: checkindate,
         noofnights: noofnights,
@@ -44,7 +44,7 @@ export class ContractAddingService {
   }
 
   setContract(checkindate, noofnights, noofroomswithadults) {
-    this.check = this.http.get('http://localhost:9090/api/joinQuery3', {
+    this.check = this.http.get('http://localhost:9090/searchResults', {
       params: {
         checkindate: checkindate,
         noofnights: noofnights,

@@ -19,8 +19,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ViewResultComponent } from './view-result/view-result.component';
-import { Router, ActivatedRoute } from '@angular/router';
 import { ViewOriginalContractsComponent } from './view-original-contracts/view-original-contracts.component';
+import { FilterPipe } from './Pipes/filter.pipe';
 
 
 @NgModule({
@@ -32,6 +32,7 @@ import { ViewOriginalContractsComponent } from './view-original-contracts/view-o
     SearchContractComponent,
     ViewResultComponent,
     ViewOriginalContractsComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
